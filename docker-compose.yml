@@ -63,6 +63,8 @@ services:
       - AIRFLOW_CONN_SPARK_DEFAULT=spark://spark:7077
     networks:
       - data-network
+    volumes:
+      - ./dags:/opt/bitnami/airflow/dags
   airflow-worker:
     image: docker.io/bitnami/airflow-worker:2
     environment:
@@ -74,6 +76,8 @@ services:
       - AIRFLOW_CONN_SPARK_DEFAULT=spark://spark:7077
     networks:
       - data-network
+    volumes:
+      - ./dags:/opt/bitnami/airflow/dags
   airflow:
     image: docker.io/bitnami/airflow:2
     environment:
@@ -86,6 +90,8 @@ services:
       - '8085:8080'
     networks:
       - data-network
+    volumes:
+      - ./dags:/opt/bitnami/airflow/dags
 volumes:
   postgresql_data:
     driver: local
