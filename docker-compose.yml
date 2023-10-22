@@ -65,6 +65,7 @@ services:
       - data-network
     volumes:
       - ./dags:/opt/bitnami/airflow/dags
+      - ./requirements-airflow.txt:/bitnami/python/requirements.txt
   airflow-worker:
     image: docker.io/bitnami/airflow-worker:2
     environment:
@@ -78,6 +79,7 @@ services:
       - data-network
     volumes:
       - ./dags:/opt/bitnami/airflow/dags
+      - ./requirements-airflow.txt:/bitnami/python/requirements.txt
   airflow:
     image: docker.io/bitnami/airflow:2
     environment:
@@ -92,6 +94,7 @@ services:
       - data-network
     volumes:
       - ./dags:/opt/bitnami/airflow/dags
+      - ./requirements-airflow.txt:/bitnami/python/requirements.txt
 volumes:
   postgresql_data:
     driver: local

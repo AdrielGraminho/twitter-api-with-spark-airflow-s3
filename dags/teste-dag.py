@@ -4,8 +4,12 @@ from airflow.operators.python_operator import PythonOperator
 from pyspark.sql import SparkSession, functions
 
 def teste_dag():
+    print("start work")
     spark = SparkSession.builder \
     .appName('HelloWorld') \
+    .config("spark.driver.maxResultSize", "8g") \
+    .config("spark.network.timeout", 10000000) \
+    .config("spark.executor.heartbeatInterval", 10000000) \
     .master("spark://spark:7077") \
     .getOrCreate()
     
@@ -19,7 +23,7 @@ def teste_dag():
     
 default_args = {
     'owner': 'adriel',
-    'start_date': datetime(2020, 11, 18),
+    'start_date': datetime(2023, 10, 22),
     'retries': 10,
 	  'retry_delay': timedelta(hours=1)
 }
